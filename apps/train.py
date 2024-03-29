@@ -173,7 +173,7 @@ if __name__ == "__main__":
     parser.add_argument('--no-filter', dest='filter', action='store_false')
     parser.set_defaults(filter=True)
     ######
-    parser.add_argument("--seed", type=int, default=-1)
+    parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--num_epoch", type=int, default=10)
     
 
