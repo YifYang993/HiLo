@@ -5,6 +5,5 @@ cape/
 thuman2/
 *.zip
 */__pycache__/*
-command/
 my_command
 args.txt
