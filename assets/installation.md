@@ -3,8 +3,8 @@
 Start by cloning the repo:
 
 ```bash
-git clone git@github.com:YuliangXiu/ICON.git
-cd ICON
+git clone git@github.com:YifYang993/HiLo.git
+cd HiLo
 ```
 
 ## Environment

@@ -63,7 +63,7 @@ python -m scripts.visibility_batch -out_dir data/
 
 :white_check_mark: NOW, you have all the synthetic dataset under `data/thuman2_{num_views}views`, which will be used for training. 
 
-:arrow_right: NEXT, please jump to [training-and-testing](README.md#training-and-testing) for more details.
+:arrow_right: NEXT, please jump to [training-and-testing](../README.md#training-and-testing) for more details.
 
 ## Examples
 
