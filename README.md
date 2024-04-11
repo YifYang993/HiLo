@@ -44,8 +44,6 @@
     </li>
   </ol>
 </details>
-<br />
-<br />
 
 <br>
 
@@ -58,7 +56,7 @@
 <a href="#training-and-testing">Training and testing</a> to train and benchmark HiLo using the prepared datasets.
 
 - If you want to **Running Demo**, please see
-<a href="#running-demo">.
+<a href="#running-demo">Running Demo</a>.
 
 Giving a RGB image of clothed human, with our HiLo, you will get:
   - image:
@@ -67,9 +65,6 @@ Giving a RGB image of clothed human, with our HiLo, you will get:
     - with the 3d objects of smpl, reconstructed and refined cloth
   - video:
     - showing the reconstructed human from all angles
-
-
-<br/>
 
 <br>
 
@@ -97,7 +92,6 @@ bash command/train_and_test.sh
 bash command/test_only.sh
 ```
 
-<br/>
 
 ## Citation
 
