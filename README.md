@@ -74,7 +74,6 @@ Giving a RGB image of clothed human, with our HiLo, you will get:
 
 <br/>
 
-
 <br>
 
 ## Instructions
@@ -85,13 +84,7 @@ Giving a RGB image of clothed human, with our HiLo, you will get:
 
 <br/>
 
-
-
 <br>
-
-
-<br>
-
 
 ## Running Demo
 
@@ -100,7 +93,6 @@ Giving a RGB image of clothed human, with our HiLo, you will get:
 bash command/infer.sh
 ```
 The reconstructed results (mesh, image, video) will be in path "{$out_dir}".
-
 
 ## Training and testing
 
@@ -118,7 +110,6 @@ bash command/train_and_test.sh
 bash command/test_only.sh
 ```
 
-<br/>
 <br/>
 
 ## Citation
