@@ -114,8 +114,4 @@ Here are some great resources we benefit from:
 
 <br>
 
-## License
-
-By downloading and using the code and model you agree to the terms in the [LICENSE](LICENSE).
-
 
