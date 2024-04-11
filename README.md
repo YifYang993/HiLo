@@ -34,9 +34,6 @@
       <a href="#introduction-to-HiLo">Introduction to HiLo</a>
     </li>
     <li>
-      <a href="#instructions">Instructions</a>
-    </li>
-    <li>
       <a href="#running-demo">Running Demo</a>
     </li>
     <li>
@@ -71,16 +68,6 @@ Giving a RGB image of clothed human, with our HiLo, you will get:
   - video:
     - showing the reconstructed human from all angles
 
-
-<br/>
-
-<br>
-
-## Instructions
-
-- See [docs/installation.md](docs/installation.md) to install all the required packages and setup the models
-- See [docs/dataset.md](docs/dataset.md) to prepare the in-the-wild datasets
-- See <a href="#training-and-testing">Training and testing</a> to train and benchmark CR-NeRF using Brandenburg Gate tainingset
 
 <br/>
 
