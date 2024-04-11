@@ -49,10 +49,10 @@
 
 
 ## Introduction-to-CR-NeRF 
-|              ![Pipeline](images/pipeline.png)               |
+|              ![Pipeline](assets/pipeline.png)               |
 | :----------------------------------------------------------: |
 |       _Pipeline of HiLo_       |        
-- If you want to **Train & Evaluate**, please check [installation.md](https://github.com/YuliangXiu/ICON/blob/master/docs/installation.md) to prepare environment, required models and extra data. Please check [dataset.md](https://github.com/YuliangXiu/ICON/blob/master/docs/dataset.md) to prepare THuman2.0 and CAPE dataset, see
+- If you want to **Train & Evaluate**, please check [installation.md](assets/installation.md) to prepare environment, required models and extra data. Please check [dataset.md](assets/dataset.md) to prepare THuman2.0 and CAPE dataset, see
 <a href="#training-and-testing">Training and testing</a> to train and benchmark HiLo using the prepared datasets.
 
 - If you want to **Running Demo**, please see
@@ -96,11 +96,13 @@ bash command/test_only.sh
 ## Citation
 
 ```bibtex
-@inproceedings{yang2024hilo,
+@misc{yang2024hilo,
       title={HiLo: Detailed and Robust 3D Clothed Human Reconstruction with High-and Low-Frequency Information of Parametric Models}, 
       author={Yifan Yang and Dong Liu and Shuhai Zhang and Zeshuai Deng and Zixiong Huang and Mingkui Tan},
-      booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
-      year={2024}
+      year={2024},
+      eprint={2404.04876},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
 ```
 
