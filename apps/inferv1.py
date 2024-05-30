@@ -111,6 +111,22 @@ if __name__ == "__main__":
     parser.add_argument('--dropout', type=float, default=0) #2,3,4,5,6
     parser.add_argument('--perturb_sdf', type=float, default=0) #2,3,4,5,6
     parser.add_argument('--pamir_icon', default=False, action="store_true") #2,3,4,5,6
+
+    parser.add_argument('--barf_c2f', nargs='+', type=float, default=[0.1, 0.5]) #2,3,4,5,6
+    parser.add_argument("--kernel_pad_num", type=str, default='10')
+    parser.add_argument("--mlp_pad_mode", type=str, default='zeros')
+    parser.add_argument("--kl_div", default=False, action="store_true")
+
+    parser.add_argument('--train_on_thuman', default=False, action="store_true") 
+    
+    parser.add_argument('--smplx2smpl', default=False, action="store_true") #2,3,4,5,6
+    parser.add_argument('--filter', action='store_true')
+    parser.add_argument('--no-filter', dest='filter', action='store_false')
+    parser.add_argument("--smpl_attention", default=False, action="store_true")
+
+    parser.add_argument("--adaptive_pe_sdf", default=False, action="store_true") 
+
+
     args = parser.parse_args()
 
     # cfg read and merge

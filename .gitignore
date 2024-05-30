@@ -7,3 +7,4 @@ thuman2/
 */__pycache__/*
 my_command
 args.txt
+*.pyc
