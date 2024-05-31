@@ -6,9 +6,7 @@ warnings.filterwarnings('ignore')
 logging.getLogger("wandb").setLevel(logging.ERROR)
 logging.getLogger("lightning").setLevel(logging.ERROR)
 logging.getLogger("trimesh").setLevel(logging.ERROR)
-import sys
-sys.path.append("/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON")
-sys.path.append("/media/young/writable/code/human_reconstruction/")
+
 from pytorch_lightning.callbacks import LearningRateMonitor
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning import loggers as pl_loggers

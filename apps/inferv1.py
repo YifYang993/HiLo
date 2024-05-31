@@ -13,8 +13,7 @@
 # for Intelligent Systems. All rights reserved.
 #
 # Contact: ps-license@tuebingen.mpg.de
-import sys
-sys.path.append("/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON")
+
 import warnings
 import logging
 
@@ -83,7 +82,13 @@ if __name__ == "__main__":
     parser.add_argument("--beta_min", type=float, default=0.03)
     parser.add_argument("--beta_plus", type=float, default=3.)
     ######
-
+    parser.add_argument('--barf_c2f', nargs='+', type=float, default=[0.1, 0.5]) #2,3,4,5,6
+    parser.add_argument("--kernel_pad_num", type=str, default='10')
+    #add_argument of a strings
+    parser.add_argument("--mlp_pad_mode", type=str, default='zeros')
+    parser.add_argument("--smpl_attention", default=False, action="store_true")
+    parser.add_argument('--filter', action='store_true')
+    parser.add_argument("--adaptive_pe_sdf", default=False, action="store_true") 
     #####useclip
     parser.add_argument("--use_clip", default=False, action="store_true")
     parser.add_argument("--clip_fuse_layer", type=str, default="23") ##1 2 3

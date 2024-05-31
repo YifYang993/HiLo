@@ -13,9 +13,6 @@
 # for Intelligent Systems. All rights reserved.
 #
 # Contact: ps-license@tuebingen.mpg.de
-import sys
-sys.path.append("/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON")
-sys.path.append("/media/young/writable/code/human_reconstruction")
 from lib.net.net_util import *
 import torch.nn as nn
 import torch.nn.functional as F

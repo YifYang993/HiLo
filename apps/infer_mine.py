@@ -13,8 +13,7 @@
 # for Intelligent Systems. All rights reserved.
 #
 # Contact: ps-license@tuebingen.mpg.de
-import sys
-sys.path.append("/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON")
+
 import warnings
 import logging
 

@@ -13,9 +13,7 @@
 # for Intelligent Systems. All rights reserved.
 #
 # Contact: ps-license@tuebingen.mpg.de
-import sys 
-# from torchvision.utils import save_image
-sys.path.append("/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON/")
+
 from lib.net.voxelize import Voxelization
 from lib.dataset.mesh_util import feat_select, read_smpl_constants
 from lib.net.NormalNet import NormalNet

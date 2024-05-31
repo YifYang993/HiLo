@@ -14,8 +14,7 @@
 #
 # Contact: ps-license@tuebingen.mpg.de
 from threadpoolctl import threadpool_limits
-import sys
-sys.path.append("/media/young/writable/code/human_reconstruction/")
+
 from lib.renderer.mesh import load_fit_body, compute_normal_batch
 from lib.dataset.body_model import TetraSMPLModel
 from lib.common.render import Render
@@ -31,8 +30,7 @@ import trimesh
 import torch
 import vedo
 import torchvision.transforms as transforms
-import sys
-# sys.path.append("/media/young/writable/code/human_reconstruction/")
+
 
 cape_gender = {
     "male":

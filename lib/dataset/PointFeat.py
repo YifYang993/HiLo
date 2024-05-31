@@ -1,8 +1,6 @@
 from pytorch3d.structures import Meshes
 import torch.nn.functional as F
 import torch
-import sys
-sys.path.append("/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON/")
 from lib.common.render_utils import face_vertices
 from lib.dataset.mesh_util import SMPLX, barycentric_coordinates_of_projection
 from kaolin.ops.mesh import check_sign
