@@ -28,7 +28,7 @@
 
 <br>
 <div align="center">
-    <img src="./assets/teaser.gif" alt="Logo" width="100%">
+    <img src="./assets/ezgif-3-914361f0b6.gif" alt="Logo" width="100%">
   </div>
 
 ## Video-Demo
