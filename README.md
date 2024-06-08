@@ -35,7 +35,7 @@
 <br>
 ## Applications
 
-|                              ![SHHQ](assets/SHHQ.gif)                              |                                                ![crowd](assets/crowd.gif)                                                 |
+|                              ![SHHQ](assets/ezgif-3-914361f0b6.gif)                              |                                                ![crowd](assets/in_the_wild_v3_00.png)                                                 |
 | :--------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
 | "3D guidance" for [SHHQ Dataset](https://github.com/stylegan-human/StyleGAN-Human) |                                         multi-person reconstruction w/ occlusion                                          |
 |                        ![Blender](assets/blender-demo.gif)                         |                                            ![Animation](assets/animation.gif)                                             |
