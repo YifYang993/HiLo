@@ -26,17 +26,12 @@
   </p>
 </p>
 
-<br>
-<div align="center">
-    <img src="./assets/ezgif-3-914361f0b6.gif" alt="Logo" width="50%">
-  </div>
-<br/>
 
 <br>
 ## Applications
 
 |                              ![SHHQ](assets/ezgif-3-914361f0b6.gif)                              |                                                ![crowd](assets/in_the_wild_v3_00.png)                                                 |
-| :--------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+| :--------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
 | "3D guidance" for [SHHQ Dataset](https://github.com/stylegan-human/StyleGAN-Human) |                                         multi-person reconstruction w/ occlusion                                          |
 |                        ![Blender](assets/vs_v5_00.png)                         |                                            ![Animation](assets/supplementary_sketch2_3d_00.png)                                             |
 |        "All-in-One" [Blender add-on](https://github.com/kwan3854/CEB_ECON)         | SMPL-X based Animation ([Instruction](https://github.com/YuliangXiu/ECON#animation-with-smpl-x-sequences-econ--hybrik-x)) |
