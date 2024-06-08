@@ -31,11 +31,6 @@
     <img src="./assets/ezgif-3-914361f0b6.gif" alt="Logo" width="100%">
   </div>
 
-## Video-Demo
-
-#### In-the-wild Reconstruction
-
-[![](https://github.com/YifYang993/HiLo/blob/master/assets/1717815605893.jpg)](https://youtu.be/m43u58wqvdE "")
 
 <br/>
 
