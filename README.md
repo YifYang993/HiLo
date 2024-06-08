@@ -28,13 +28,12 @@
 
 
 <br>
-## Applications
 
-|                              ![SHHQ](assets/ezgif-3-914361f0b6.gif)                              |                                                ![crowd](assets/in_the_wild_v3_00.png)                                                 |
-| :--------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
-| "3D guidance" for [SHHQ Dataset](https://github.com/stylegan-human/StyleGAN-Human) |                                         multi-person reconstruction w/ occlusion                                          |
+|                              ![deom](assets/ezgif-3-914361f0b6.gif)                              |                                                ![inthewild](assets/in_the_wild_v3_00.png)                                                 |
+| :--------------------------------------------------------------------------------: | :----------------------------------------------------------: |
+| Video demo |                                         In-the-wild reconstruction w/ challenging poses and loose cloth                                          |
 |                        ![Blender](assets/vs_v5_00.png)                         |                                            ![Animation](assets/supplementary_sketch2_3d_00.png)                                             |
-|        "All-in-One" [Blender add-on](https://github.com/kwan3854/CEB_ECON)         | SMPL-X based Animation ([Instruction](https://github.com/YuliangXiu/ECON#animation-with-smpl-x-sequences-econ--hybrik-x)) |
+|        Comparison with SOTAs         | sketch to 3D clothed human |
 <br/>
 
 <!-- TABLE OF CONTENTS -->
