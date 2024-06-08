@@ -34,7 +34,7 @@
 
 [![](https://github.com/YifYang993/HiLo/blob/master/assets/1717815605893.jpg)](https://youtu.be/m43u58wqvdE "")
 
-<b/r>
+<br/>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open" style='padding: 10px; border-radius:5px 30px 30px 5px; border-style: solid; border-width: 1px;'>
