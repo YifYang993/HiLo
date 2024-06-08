@@ -32,7 +32,7 @@
 
 #### In-the-wild Reconstruction
 
-[![](m43u58wqvdE/mq1.webp?sqp=CISQj7MG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGC8gVChyMA8=&rs=AOn4CLB8SsIt-4FeJ1ruWBlIIHd40xcStA)](https://youtu.be/m43u58wqvdE "")
+[![](https://github.com/YifYang993/HiLo/blob/master/assets/1717815605893.jpg)](https://youtu.be/m43u58wqvdE "")
 
 <b/r>
 
