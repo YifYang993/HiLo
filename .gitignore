@@ -8,4 +8,4 @@ thuman2/
 my_command
 args.txt
 *.pyc
-wandb
+wandb/
