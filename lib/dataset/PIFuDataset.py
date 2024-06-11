@@ -823,9 +823,6 @@ if __name__=="__main__":
     print("train", len(test_data_loader))
     for i,j in tqdm(enumerate(test_data_loader)):
         print(i)
-        # imgtensor=torch.cat([j['normal_F'],j['normal_B'],j['T_normal_F'],j['T_normal_B']],dim=0)
-        # save_image( imgtensor, "/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON/examples/normals.png",nrow=2, normalize=True)
-        # break
         for key in j.keys():
             try:
                 print(key,  j[key].size())
@@ -833,47 +830,6 @@ if __name__=="__main__":
             except:
                 print(key)
 
-    # pifu= PIFuDataset(cfg=cfg1, split='test', args=args_)
-    # test_data_loader = DataLoader(
-    #         pifu,
-    #         batch_size=1,
-    #         shuffle=False,
-    #         num_workers=8,
-    #         pin_memory=True
-    #     )
-    # print("train", len(test_data_loader))
-    # for i,j in tqdm(enumerate(test_data_loader)):
-    #     print(i)
-    #     # imgtensor=torch.cat([j['normal_F'],j['normal_B'],j['T_normal_F'],j['T_normal_B']],dim=0)
-    #     # save_image( imgtensor, "/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON/examples/normals.png",nrow=2, normalize=True)
-    #     # break
-    #     for key in j.keys():
-    #         try:
-    #             print(key,  j[key].size())
-
-    #         except:
-    #             print(key)
-
-    # pifu= PIFuDataset(cfg=cfg1, split='val', args=args_)
-    # test_data_loader = DataLoader(
-    #         pifu,
-    #         batch_size=1,
-    #         shuffle=False,
-    #         num_workers=8,
-    #         pin_memory=True
-    #     )
-    # print("train", len(test_data_loader))
-    # for i,j in tqdm(enumerate(test_data_loader)):
-    #     print(i)
-    #     # imgtensor=torch.cat([j['normal_F'],j['normal_B'],j['T_normal_F'],j['T_normal_B']],dim=0)
-    #     # save_image( imgtensor, "/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON/examples/normals.png",nrow=2, normalize=True)
-    #     # break
-    #     for key in j.keys():
-    #         try:
-    #             print(key,  j[key].size())
-
-    #         except:
-    #             print(key)
     ##regenerate mesh for cape or just check the size
     """
     calib torch.Size([1, 4, 4])

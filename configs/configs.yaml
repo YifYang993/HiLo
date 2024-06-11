@@ -1,5 +1,5 @@
 name: HiLo_experiment
-ckpt_dir: './data/ckpt/'
+ckpt_dir: 'results/data/ckpt/'
 normal_path: './data/ckpt/normal.ckpt'
 results_path: 'results'
 
@@ -33,7 +33,7 @@ net:
   num_stack: 2
   prior_type: "icon"
   use_filter: True
-  in_geo: () #(('normal_F',3), ('normal_B',3))
+  in_geo: () 
   in_nml: (('image',3), ('T_normal_F',3), ('T_normal_B',3))
   smpl_feats: ['sdf', 'cmap', 'norm', 'vis']
   gtype: 'HGPIFuNet'
@@ -68,7 +68,7 @@ num_sanity_val_steps: 1
 momentum: 0.0 
 optim: RMSprop
 
-# training (batch=4, set=agora, rot-6)
+# training 
 overfit: False
 num_epoch: 10
 freq_show_train: 1.0

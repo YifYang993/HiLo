@@ -74,16 +74,12 @@ def checkname(args,cfg):
         print("experimentname",cfg.name)
     return cfg
 
-# os.environ["CUDA_VISIBLE_DEVICES"] = "5"
+
 if __name__ == "__main__":
-    # torch.multiprocessing.set_start_method('spawn',force=True)
-    parser = argparse.ArgumentParser()  #configs/train/train_on_capev1/icon_filter_cape.yaml 
-    # parser.add_argument("-cfg", "--config_file", type=str, default='configs/train/train_on_capev1/cape_triplane.yaml',help="path of the yaml config file")
-    # parser.add_argument("-cfg", "--config_file", type=str, default='configs/train/train_on_capev1/icon-filter_cape.yaml',help="path of the yaml config file")
+    parser = argparse.ArgumentParser()  
     parser.add_argument("-cfg", "--config_file", type=str, default='configs/train/train_on_capev1/icon-filter_thuman2.yaml',help="path of the yaml config file")
-    # parser.add_argument("-cfg", "--config_file", type=str, default='configs/train/icon_uncertainty/icon-filter_uncertaintyv1.yaml',help="path of the yaml config file")
     parser.add_argument("--proj_name", type=str, default='Human_3d_Reconstruction')
-    parser.add_argument("--savepath", type=str, default='/mnt/cephfs/dataset/NVS/experimental_results/avatar/icon/data/results/')
+    parser.add_argument("--savepath", type=str, default='./')
     parser.add_argument("-test", "--test_mode", default=False, action="store_true")
     parser.add_argument("-val", "--val_mode", default=False, action="store_true")
     parser.add_argument("--test_code", default=False, action="store_true")
@@ -97,7 +93,6 @@ if __name__ == "__main__":
     parser.add_argument("--PE_sdf", type=int, default=0) 
     parser.add_argument("--adaptive_pe_sdf", default=False, action="store_true") 
 
-    # parser.add_argument("--PE_sdf_dim", type=int, default=0)
     parser.add_argument("--batch_size", type=int, default=2) 
     parser.add_argument("--num_worker", type=int, default=8)
     parser.add_argument("--datasettype", nargs='+',  type=str, default=["cape"]) ##1 2 3  
@@ -119,7 +114,6 @@ if __name__ == "__main__":
     parser.add_argument("--sse", default=False, action="store_true")
     parser.add_argument("--smpl_attention", default=False, action="store_true")
     #add_argument of a list of  strings
-    # parser.add_argument('--kernel_pad_num', nargs='+', type=int, default=[1,0]) #2,3,4,5,6
     parser.add_argument("--kernel_pad_num", type=str, default='10')
     #add_argument of a strings
     parser.add_argument("--mlp_pad_mode", type=str, default='zeros')
@@ -199,8 +193,7 @@ if __name__ == "__main__":
             cfg.merge_from_list(name_dict)
             
 
-    # cfg.gpus=[int(i) for i in args.gpus]
-    # print("experimentname",cfg.name)
+
     cfg.freeze()
     print("note cfg is freeze pamir voxel dim", cfg.net.voxel_dim, "use filter", cfg.net.use_filter, "noise scale", cfg.dataset.noise_scale, "norm_mlp",cfg.net.norm_mlp,"batch_size",args.batch_size)
     os.makedirs(osp.join(cfg.results_path, cfg.name), exist_ok=True)

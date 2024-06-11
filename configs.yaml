@@ -1,8 +1,8 @@
-name: baseline/icon-filter_batch2_withnormal_uncertainty_betamin0003_betaplus5
-ckpt_dir: '/mnt/cephfs/dataset/NVS/experimental_results/avatar/icon/data/ckpt/'
-# resume_path: "/mnt/cephfs/dataset/NVS/experimental_results/avatar/icon/data/ckpt/baseline/icon-filter_batch2_withnormal_uncertainty_betamin003_betaplus3/last.ckpt"
-normal_path: "/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON/data/ckpt/normal.ckpt"
-results_path: '/mnt/cephfs/dataset/NVS/experimental_results/avatar/icon/data/results/'
+name: exp
+ckpt_dir: 'results/ckpt/'
+# resume_path: ""
+normal_path: "./data/ckpt/normal.ckpt"
+results_path: 'results/'
 
 dataset:
   root: "./data/"
@@ -34,7 +34,7 @@ net:
   num_stack: 2
   prior_type: "icon"
   use_filter: True
-  in_geo: () #(('normal_F',3), ('normal_B',3))
+  in_geo: () 
   in_nml: (('image',3), ('T_normal_F',3), ('T_normal_B',3))
   smpl_feats: ['sdf', 'cmap', 'norm', 'vis']
   gtype: 'HGPIFuNet'
@@ -69,7 +69,7 @@ num_sanity_val_steps: 1
 momentum: 0.0 
 optim: RMSprop
 
-# training (batch=4, set=agora, rot-6)
+# training
 overfit: False
 num_epoch: 10
 freq_show_train: 1.0

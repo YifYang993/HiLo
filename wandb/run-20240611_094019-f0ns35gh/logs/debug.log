@@ -1,0 +1,29 @@
+2024-06-11 09:40:19,648 INFO    MainThread:2439932 [wandb_setup.py:_flush():76] Configure stats pid to 2439932
+2024-06-11 09:40:19,652 INFO    MainThread:2439932 [wandb_setup.py:_flush():76] Loading settings from /mnt/cephfs/home/dihitalhuman_sx_2024/.config/wandb/settings
+2024-06-11 09:40:19,655 INFO    MainThread:2439932 [wandb_setup.py:_flush():76] Loading settings from /mnt/cephfs/home/dihitalhuman_sx_2024/code/avatar/HiLo/wandb/settings
+2024-06-11 09:40:19,658 INFO    MainThread:2439932 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'_service_wait': '300'}
+2024-06-11 09:40:19,661 INFO    MainThread:2439932 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-11 09:40:19,663 WARNING MainThread:2439932 [wandb_setup.py:_flush():76] Could not find program at -m apps.train
+2024-06-11 09:40:19,666 INFO    MainThread:2439932 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': None, 'program': '-m apps.train'}
+2024-06-11 09:40:19,669 INFO    MainThread:2439932 [wandb_init.py:_log_setup():507] Logging user logs to ./wandb/run-20240611_094019-f0ns35gh/logs/debug.log
+2024-06-11 09:40:19,672 INFO    MainThread:2439932 [wandb_init.py:_log_setup():508] Logging internal logs to ./wandb/run-20240611_094019-f0ns35gh/logs/debug-internal.log
+2024-06-11 09:40:19,674 INFO    MainThread:2439932 [wandb_init.py:init():547] calling init triggers
+2024-06-11 09:40:19,677 INFO    MainThread:2439932 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {}
+2024-06-11 09:40:19,680 INFO    MainThread:2439932 [wandb_init.py:init():595] starting backend
+2024-06-11 09:40:19,684 INFO    MainThread:2439932 [wandb_init.py:init():599] setting up manager
+2024-06-11 09:40:19,691 INFO    MainThread:2439932 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-11 09:40:19,741 INFO    MainThread:2439932 [wandb_init.py:init():605] backend started and connected
+2024-06-11 09:40:19,752 INFO    MainThread:2439932 [wandb_init.py:init():695] updated telemetry
+2024-06-11 09:40:20,057 INFO    MainThread:2439932 [wandb_init.py:init():732] communicating run to backend with 60.0 second timeout
+2024-06-11 09:40:21,178 INFO    MainThread:2439932 [wandb_run.py:_on_init():2176] communicating current version
+2024-06-11 09:40:21,549 INFO    MainThread:2439932 [wandb_run.py:_on_init():2185] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-11 09:40:21,554 INFO    MainThread:2439932 [wandb_init.py:init():782] starting run threads in backend
+2024-06-11 09:40:51,578 INFO    MainThread:2439932 [wandb_run.py:_console_start():2157] atexit reg
+2024-06-11 09:40:51,582 INFO    MainThread:2439932 [wandb_run.py:_redirect():2012] redirect: SettingsConsole.WRAP_RAW
+2024-06-11 09:40:51,585 INFO    MainThread:2439932 [wandb_run.py:_redirect():2077] Wrapping output streams.
+2024-06-11 09:40:51,588 INFO    MainThread:2439932 [wandb_run.py:_redirect():2102] Redirects installed.
+2024-06-11 09:40:51,592 INFO    MainThread:2439932 [wandb_init.py:init():824] run started, returning control to user process
+2024-06-11 09:40:51,596 INFO    MainThread:2439932 [wandb_run.py:_config_callback():1285] config_cb None None {}
+2024-06-11 09:52:47,500 WARNING MsgRouterThr:2439932 [router.py:message_loop():77] message_loop has been closed

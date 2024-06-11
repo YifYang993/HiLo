@@ -895,8 +895,8 @@ def rescale_smpl(fitted_path, scale=100, translate=(0, 0, 0)):
 class SMPLX():
     def __init__(self):
 
-        # self.current_dir = osp.join(osp.dirname(__file__), "../../data/smpl_related")
-        self.current_dir = "/mnt/cephfs/home/yangyifan/yangyifan/code/avatar/ICON/data/smpl_related"
+        self.current_dir = osp.join(osp.dirname(__file__), "../../data/smpl_related")
+        
 
         self.smpl_verts_path = osp.join(self.current_dir, "smpl_data/smpl_verts.npy")
         self.smpl_faces_path = osp.join(self.current_dir, "smpl_data/smpl_faces.npy")

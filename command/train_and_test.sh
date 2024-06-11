@@ -1,4 +1,4 @@
-name=HiLo_experiment
+name=HiLo_experiment111
 source /mnt/cephfs/home/qiuzhen/anaconda3/etc/profile.d/conda.sh;
 conda activate icon3090v1; 
 #command for train on thuman2

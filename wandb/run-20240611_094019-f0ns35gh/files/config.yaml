@@ -1,0 +1,86 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.8.11
+    cli_version: 0.15.0
+    framework: lightning
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1718070019.745793
+    t:
+      1:
+      - 1
+      - 5
+      - 9
+      - 41
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 9
+      - 41
+      - 53
+      - 55
+      3:
+      - 7
+      - 13
+      - 23
+      4: 3.8.11
+      5: 0.15.0
+      8:
+      - 5
+    m:
+    - 1: trainer/global_step
+      6:
+      - 3
+    - 1: lr_G
+      5: 1
+      6:
+      - 1
+    - 1: bsize
+      5: 1
+      6:
+      - 1
+    - 1: cape-easy-chamfer
+      5: 1
+      6:
+      - 1
+    - 1: cape-easy-p2s
+      5: 1
+      6:
+      - 1
+    - 1: cape-easy-NC
+      5: 1
+      6:
+      - 1
+    - 1: cape-hard-chamfer
+      5: 1
+      6:
+      - 1
+    - 1: cape-hard-p2s
+      5: 1
+      6:
+      - 1
+    - 1: cape-hard-NC
+      5: 1
+      6:
+      - 1
+    - 1: cape-all-chamfer
+      5: 1
+      6:
+      - 1
+    - 1: cape-all-p2s
+      5: 1
+      6:
+      - 1
+    - 1: cape-all-NC
+      5: 1
+      6:
+      - 1
+    - 1: epoch
+      5: 1
+      6:
+      - 1
