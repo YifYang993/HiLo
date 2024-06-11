@@ -50,7 +50,6 @@ torch.backends.cudnn.benchmark = True
 
 if __name__ == "__main__":
 
-    # loading cfg file  ./configs/icon-filter.yaml -gpu 0 -in_dir ./examples -out_dir ./results -export_video -loop_smpl 100 -loop_cloth 200 -hps_type pixie
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-gpu", "--gpu_device", type=int, default=0)
@@ -65,7 +64,6 @@ if __name__ == "__main__":
     parser.add_argument("-out_dir", "--out_dir", type=str, default="./results")
     parser.add_argument('-seg_dir', '--seg_dir', type=str, default=None)
     parser.add_argument("-cfg", "--config", type=str, default="./configs/icon-filter.yaml")
-    # parser.add_argument("--mlp_first_dim", type=int, default=0) 
 
     ####model
     parser.add_argument("--mlpSe", default=False, action="store_true")
@@ -163,7 +161,7 @@ if __name__ == "__main__":
     for data in pbar:
 
         pbar.set_description(f"{data['name']}")
-        # breakpoint()
+        
         in_tensor = {"smpl_faces": data["smpl_faces"], "image": data["image"]}
 
         # The optimizer and variables

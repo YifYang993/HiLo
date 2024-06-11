@@ -343,7 +343,6 @@ if __name__ == "__main__":
         if args.ckpt_full_path!="":
             resume_path=args.ckpt_full_path
         else:resume_path=os.path.join(cfg.ckpt_dir,args.name,'last.ckpt')
-        # resume_path='/mnt/cephfs/dataset/NVS/experimental_results/avatar/icon/data/results/best_so_far/checkpoint/last.ckpt'
         if not os.path.exists(resume_path):
             NotADirectoryError("checkpoint {} not exists".format(resume_path))
 
@@ -353,14 +352,9 @@ if __name__ == "__main__":
         trainer.max_epochs=1
         trainer.log_every_n_steps=32
         trainer.val_check_interval=32
-    # if trainer.global_rank == 0:
-    #     wandb_logger.experiment.config.update(cfg)
     if not cfg.test_mode:
         trainer.fit(model=model, datamodule=datamodule)
         trainer_kwargs.update({"gpus": 1})
-        # model.set_meshres(256)##set mesh res to 256 for testing model
-        # trainer_val = SubTrainer(**trainer_kwargs)
-        # trainer_val.test(model=model, datamodule=datamodule)
         args.num_gpus=1
 
         cfg_test_mode = [
@@ -417,10 +411,9 @@ if __name__ == "__main__":
             
         }
         trainer_val = SubTrainer(**trainer_kwargs_val) ##delete normal filter, voxilization, and reconengine while saving checkpoint
-        # trainer = Trainer(**trainer_kwargs)
         # load checkpoints
 
-        # resume_path="data/ckpt/icon-filter.ckpt"
+        
         resume_path=os.path.join(cfg.ckpt_dir,cfg.name,'last.ckpt')   
 
         if not os.path.exists(resume_path):
@@ -430,10 +423,8 @@ if __name__ == "__main__":
             trainer_val.log_every_n_steps=1
             trainer_val.val_check_interval=1
 
-        # np.random.seed(1993)
+        
         trainer_val.test(model=model_val, datamodule=datamodule_val)
     else:
-        # breakpoint()
-        # np.random.seed(1993)
         trainer.test(model=model, datamodule=datamodule)
 
