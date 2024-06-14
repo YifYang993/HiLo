@@ -108,6 +108,7 @@ def parse_args():
     parser.add_argument('--dropout', type=float, default=0)  #2,3,4,5,6
     parser.add_argument('--perturb_sdf', type=float, default=0)  #2,3,4,5,6
     parser.add_argument('--pamir_icon', default=False, action="store_true")  #2,3,4,5,6
+
     return parser.parse_args()
 
 
@@ -643,4 +644,5 @@ def main(args):
 
 if __name__ == "__main__":
     args = parse_args()
-    main(args)
+    print(args.__dict__)
+    # main(args)

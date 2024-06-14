@@ -48,8 +48,7 @@ import torch
 
 torch.backends.cudnn.benchmark = True
 
-if __name__ == "__main__":
-
+def parse_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-gpu", "--gpu_device", type=int, default=0)
@@ -73,49 +72,52 @@ if __name__ == "__main__":
     parser.add_argument("--conv3d_start", type=int, default=2)
     parser.add_argument("--conv3d_kernelsize", type=int, default=1)
     parser.add_argument("--pad_mode", type=str, default='zeros')
-    parser.add_argument("--mlp_first_dim", type=int, default=0) 
+    parser.add_argument("--mlp_first_dim", type=int, default=0)
 
     ####uncertainty
     parser.add_argument("--uncertainty", default=False, action="store_true")
     parser.add_argument("--beta_min", type=float, default=0.03)
     parser.add_argument("--beta_plus", type=float, default=3.)
     ######
-    parser.add_argument('--barf_c2f', nargs='+', type=float, default=[0.1, 0.5]) #2,3,4,5,6
+    parser.add_argument('--barf_c2f', nargs='+', type=float, default=[0.1, 0.5])  # 2,3,4,5,6
     parser.add_argument("--kernel_pad_num", type=str, default='10')
-    #add_argument of a strings
+    # add_argument of a strings
     parser.add_argument("--mlp_pad_mode", type=str, default='zeros')
     parser.add_argument("--smpl_attention", default=False, action="store_true")
     parser.add_argument('--filter', action='store_true')
-    parser.add_argument("--adaptive_pe_sdf", default=False, action="store_true") 
+    parser.add_argument("--adaptive_pe_sdf", default=False, action="store_true")
     #####useclip
     parser.add_argument("--use_clip", default=False, action="store_true")
-    parser.add_argument("--clip_fuse_layer", type=str, default="23") ##1 2 3
+    parser.add_argument("--clip_fuse_layer", type=str, default="23")  ##1 2 3
     #####
-    parser.add_argument('--triplane', action='store_true',default=False)
+    parser.add_argument('--triplane', action='store_true', default=False)
     parser.add_argument('--train_on_cape', default=False, action="store_true")
-    parser.add_argument('--sdfdir', default=False, action="store_true")  
+    parser.add_argument('--sdfdir', default=False, action="store_true")
     parser.add_argument("--pamir_vol_dim", type=int, default=3)
     parser.add_argument("--PE_sdf", type=int, default=0)
-    parser.add_argument("--se_start_channel", type=int, default=1)  
+    parser.add_argument("--se_start_channel", type=int, default=1)
     parser.add_argument("--se_end_channel", type=int, default=3)
     parser.add_argument("--se_reduction", type=int, default=4)
     parser.add_argument("--cse", default=False, action="store_true")
-    parser.add_argument("--sse", default=False, action="store_true") 
+    parser.add_argument("--sse", default=False, action="store_true")
     ###mlp unet
     parser.add_argument("--use_unet", default=False, action="store_true")
-    parser.add_argument('--mlp_dim', nargs='+', type=int, default=[13, 512, 256, 128, 1]) #res_layers 13,128,256,512,256,128,1
-    parser.add_argument('--res_layers', nargs='+', type=int, default=[2,3,4]) #2,3,4,5,6
+    parser.add_argument('--mlp_dim', nargs='+', type=int,
+                        default=[13, 512, 256, 128, 1])  # res_layers 13,128,256,512,256,128,1
+    parser.add_argument('--res_layers', nargs='+', type=int, default=[2, 3, 4])  # 2,3,4,5,6
     ###
     parser.add_argument("--expname", type=str, default="test")
     parser.add_argument("--ckpt_path", type=str, default="./data/ckpt/icon-filter.ckpt")
-    
-    
-    ###dropout
-    parser.add_argument('--dropout', type=float, default=0) #2,3,4,5,6
-    parser.add_argument('--perturb_sdf', type=float, default=0) #2,3,4,5,6
-    parser.add_argument('--pamir_icon', default=False, action="store_true") #2,3,4,5,6
-    args = parser.parse_args()
 
+    ###dropout
+    parser.add_argument('--dropout', type=float, default=0)  # 2,3,4,5,6
+    parser.add_argument('--perturb_sdf', type=float, default=0)  # 2,3,4,5,6
+    parser.add_argument('--pamir_icon', default=False, action="store_true")  # 2,3,4,5,6
+
+    return parser.parse_args()
+
+
+def main(args):
     # cfg read and merge
     cfg.merge_from_file(args.config)
     cfg.merge_from_file("./lib/pymaf/configs/pymaf_config.yaml")
@@ -650,3 +652,9 @@ if __name__ == "__main__":
                     print(
                         f"Unable to extract clothing of type {seg['type']} from image {data['name']}"
                     )
+
+
+if __name__ == '__main__':
+    args = parse_args()
+    print(args.__dict__)
+    # main(args)

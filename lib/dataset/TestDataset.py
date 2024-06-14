@@ -354,11 +354,10 @@ class TestDataset():
         vp.show(*vis_list, bg="white", axes=1, interactive=True)
 
 class TestDatasetv1():
-    def __init__(self, cfg, device):
+    def __init__(self, cfg, device, in_memory_images: Optional[List[np.ndarray]] = None):
 
         # random.seed(1993)
 
-        self.image_dir = cfg['image_dir']
         self.seg_dir = cfg['seg_dir']
         self.hps_type = cfg['hps_type']
         self.smpl_type = 'smpl' if cfg['hps_type'] != 'pixie' else 'smplx'
@@ -367,11 +366,21 @@ class TestDatasetv1():
 
         self.device = device
 
-        keep_lst = sorted(glob.glob(f"{self.image_dir}/*"))
-        img_fmts = ['jpg', 'png', 'jpeg', "JPG", 'bmp', 'exr']
-        keep_lst = [item for item in keep_lst if item.split(".")[-1] in img_fmts]
+        # keep_lst = sorted(glob.glob(f"{self.image_dir}/*"))
+        # img_fmts = ['jpg', 'png', 'jpeg', "JPG", 'bmp', 'exr']
+        # keep_lst = [item for item in keep_lst if item.split(".")[-1] in img_fmts]
+        #
+        # self.subject_list = sorted([item for item in keep_lst if item.split(".")[-1] in img_fmts])
 
-        self.subject_list = sorted([item for item in keep_lst if item.split(".")[-1] in img_fmts])
+        if in_memory_images is not None:
+            # Using in memory images, will not read input image dir
+            self.subject_list = in_memory_images
+        elif 'image_dir' in cfg:
+            self.image_dir = cfg['image_dir']
+            keep_lst = sorted(glob.glob(f"{self.image_dir}/*"))
+            img_fmts = ['jpg', 'png', 'jpeg', "JPG", 'bmp', 'exr']
+            keep_lst = [item for item in keep_lst if item.split(".")[-1] in img_fmts]
+            self.subject_list = sorted([item for item in keep_lst if item.split(".")[-1] in img_fmts])
 
         if self.colab:
             self.subject_list = [self.subject_list[0]]
@@ -485,12 +494,12 @@ class TestDatasetv1():
 
     def __getitem__(self, index):
 
-        img_path = self.subject_list[index]
-        img_name = img_path.split("/")[-1].rsplit(".", 1)[0]
+        img_item = self.subject_list[index]
+        img_name = img_item.split("/")[-1].rsplit(".", 1)[0] if isinstance(img_item, str) else uuid4()
 
         if self.seg_dir is None:
             img_icon, img_hps, img_ori, img_mask, uncrop_param = process_image(
-                img_path, self.hps_type, 512, self.device
+                img_item, self.hps_type, 512, self.device
             )
 
             data_dict = {
@@ -503,7 +512,7 @@ class TestDatasetv1():
 
         else:
             img_icon, img_hps, img_ori, img_mask, uncrop_param, segmentations = process_image(
-                img_path,
+                img_item,
                 self.hps_type,
                 512,
                 self.device,
