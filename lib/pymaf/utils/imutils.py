@@ -1,6 +1,8 @@
 """
 This file contains functions that are used to perform data augmentation.
 """
+from __future__ import annotations
+
 import os
 os.environ["OPENCV_IO_ENABLE_OPENEXR"]="1"
 import cv2
@@ -98,7 +100,7 @@ def get_transformer(input_res):
     ]
 
 
-def process_image(img_file, hps_type, input_res=512, device=None, seg_path=None):
+def process_image(img_file: str | np.ndarray, hps_type, input_res=512, device=None, seg_path=None):
     """Read image, do preprocessing and possibly crop it according to the bounding box.
     If there are bounding box annotations, use them to crop the image.
     If no bounding box is specified but openpose detections are available, use them to get the bounding box.
@@ -108,8 +110,11 @@ def process_image(img_file, hps_type, input_res=512, device=None, seg_path=None)
         image_to_tensor, mask_to_tensor, image_to_pymaf_tensor, image_to_pixie_tensor,
         image_to_hybrik_tensor
     ] = get_transformer(input_res)
-
-    img_ori = load_img(img_file)
+    if isinstance(img_file, str):
+        img_ori = load_img(img_file)
+    elif isinstance(img_file, np.ndarray):
+        assert img_file.shape[2] == 3
+        img_ori = img_file
 
     in_height, in_width, _ = img_ori.shape
     M = aug_matrix(in_width, in_height, input_res * 2, input_res * 2)

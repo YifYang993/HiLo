@@ -48,8 +48,8 @@ import torch
 
 torch.backends.cudnn.benchmark = True
 
-if __name__ == "__main__":
 
+def parse_args():
     # loading cfg file  ./configs/icon-filter.yaml -gpu 0 -in_dir ./examples -out_dir ./results -export_video -loop_smpl 100 -loop_cloth 200 -hps_type pixie
     parser = argparse.ArgumentParser()
 
@@ -75,7 +75,7 @@ if __name__ == "__main__":
     parser.add_argument("--conv3d_start", type=int, default=2)
     parser.add_argument("--conv3d_kernelsize", type=int, default=1)
     parser.add_argument("--pad_mode", type=str, default='zeros')
-    parser.add_argument("--mlp_first_dim", type=int, default=0) 
+    parser.add_argument("--mlp_first_dim", type=int, default=0)
 
     ####uncertainty
     parser.add_argument("--uncertainty", default=False, action="store_true")
@@ -85,30 +85,33 @@ if __name__ == "__main__":
 
     #####useclip
     parser.add_argument("--use_clip", default=False, action="store_true")
-    parser.add_argument("--clip_fuse_layer", type=str, default="23") ##1 2 3
+    parser.add_argument("--clip_fuse_layer", type=str, default="23")  ##1 2 3
     #####
-    parser.add_argument('--triplane', action='store_true',default=False)
+    parser.add_argument('--triplane', action='store_true', default=False)
     parser.add_argument('--train_on_cape', default=False, action="store_true")
-    parser.add_argument('--sdfdir', default=False, action="store_true")  
+    parser.add_argument('--sdfdir', default=False, action="store_true")
     parser.add_argument("--pamir_vol_dim", type=int, default=3)
     parser.add_argument("--PE_sdf", type=int, default=0)
-    parser.add_argument("--se_start_channel", type=int, default=1)  
+    parser.add_argument("--se_start_channel", type=int, default=1)
     parser.add_argument("--se_end_channel", type=int, default=3)
     parser.add_argument("--se_reduction", type=int, default=4)
     parser.add_argument("--cse", default=False, action="store_true")
-    parser.add_argument("--sse", default=False, action="store_true") 
+    parser.add_argument("--sse", default=False, action="store_true")
     ###mlp unet
     parser.add_argument("--use_unet", default=False, action="store_true")
-    parser.add_argument('--mlp_dim', nargs='+', type=int, default=[13, 512, 256, 128, 1]) #res_layers 13,128,256,512,256,128,1
-    parser.add_argument('--res_layers', nargs='+', type=int, default=[2,3,4]) #2,3,4,5,6
+    parser.add_argument('--mlp_dim', nargs='+', type=int,
+                        default=[13, 512, 256, 128, 1])  #res_layers 13,128,256,512,256,128,1
+    parser.add_argument('--res_layers', nargs='+', type=int, default=[2, 3, 4])  #2,3,4,5,6
     ###
-    
-    ###dropout
-    parser.add_argument('--dropout', type=float, default=0) #2,3,4,5,6
-    parser.add_argument('--perturb_sdf', type=float, default=0) #2,3,4,5,6
-    parser.add_argument('--pamir_icon', default=False, action="store_true") #2,3,4,5,6
-    args = parser.parse_args()
 
+    ###dropout
+    parser.add_argument('--dropout', type=float, default=0)  #2,3,4,5,6
+    parser.add_argument('--perturb_sdf', type=float, default=0)  #2,3,4,5,6
+    parser.add_argument('--pamir_icon', default=False, action="store_true")  #2,3,4,5,6
+    return parser.parse_args()
+
+
+def main(args):
     # cfg read and merge
     cfg.merge_from_file(args.config)
     cfg.merge_from_file("./lib/pymaf/configs/pymaf_config.yaml")
@@ -132,9 +135,9 @@ if __name__ == "__main__":
         'image_dir': args.in_dir,
         'seg_dir': args.seg_dir,
         'colab': args.colab,
-        'has_det': True,    # w/ or w/o detection
+        'has_det': True,  # w/ or w/o detection
         'hps_type':
-            args.hps_type    # pymaf/pare/pixie
+            args.hps_type  # pymaf/pare/pixie
     }
 
     if args.hps_type == "pixie" and "pamir" in args.config:
@@ -156,12 +159,12 @@ if __name__ == "__main__":
         # The optimizer and variables
         optimed_pose = torch.tensor(
             data["body_pose"], device=device, requires_grad=True
-        )    # [1,23,3,3]
-        optimed_trans = torch.tensor(data["trans"], device=device, requires_grad=True)    # [3]
-        optimed_betas = torch.tensor(data["betas"], device=device, requires_grad=True)    # [1,10]
+        )  # [1,23,3,3]
+        optimed_trans = torch.tensor(data["trans"], device=device, requires_grad=True)  # [3]
+        optimed_betas = torch.tensor(data["betas"], device=device, requires_grad=True)  # [1,10]
         optimed_orient = torch.tensor(
             data["global_orient"], device=device, requires_grad=True
-        )    # [1,1,3,3]
+        )  # [1,1,3,3]
 
         optimizer_smpl = torch.optim.Adam(
             [optimed_pose, optimed_trans, optimed_betas, optimed_orient],
@@ -181,35 +184,35 @@ if __name__ == "__main__":
             "cloth": {
                 "weight": 1e1,
                 "value": 0.0
-            },    # Cloth: Normal_recon - Normal_pred
+            },  # Cloth: Normal_recon - Normal_pred
             "stiffness": {
                 "weight": 1e5,
                 "value": 0.0
-            },    # Cloth: [RT]_v1 - [RT]_v2 (v1-edge-v2)
+            },  # Cloth: [RT]_v1 - [RT]_v2 (v1-edge-v2)
             "rigid": {
                 "weight": 1e5,
                 "value": 0.0
-            },    # Cloth: det(R) = 1
+            },  # Cloth: det(R) = 1
             "edge": {
                 "weight": 0,
                 "value": 0.0
-            },    # Cloth: edge length
+            },  # Cloth: edge length
             "nc": {
                 "weight": 0,
                 "value": 0.0
-            },    # Cloth: normal consistency
+            },  # Cloth: normal consistency
             "laplacian": {
                 "weight": 1e2,
                 "value": 0.0
-            },    # Cloth: laplacian smoonth
+            },  # Cloth: laplacian smoonth
             "normal": {
                 "weight": 1e0,
                 "value": 0.0
-            },    # Body: Normal_pred - Normal_smpl
+            },  # Body: Normal_pred - Normal_smpl
             "silhouette": {
                 "weight": 1e0,
                 "value": 0.0
-            },    # Body: Silhouette_pred - Silhouette_smpl
+            },  # Body: Silhouette_pred - Silhouette_smpl
         }
 
         # smpl optimization
@@ -228,7 +231,8 @@ if __name__ == "__main__":
             optimed_orient_mat = rot6d_to_rotmat(optimed_orient.view(-1, 6)).unsqueeze(0)
             optimed_pose_mat = rot6d_to_rotmat(optimed_pose.view(-1, 6)).unsqueeze(0)
 
-            if dataset_param["hps_type"] != "pixie": ## It seems that icon do not estimated smpl with existing method in an end to end way.
+            if dataset_param[
+                "hps_type"] != "pixie":  ## It seems that icon do not estimated smpl with existing method in an end to end way.
                 smpl_out = dataset.smpl_model(
                     betas=optimed_betas,
                     body_pose=optimed_pose_mat,
@@ -296,7 +300,6 @@ if __name__ == "__main__":
             loop_smpl.set_description(pbar_desc)
 
             if i % args.vis_freq == 0:
-
                 per_loop_lst.extend(
                     [
                         in_tensor["image"],
@@ -321,7 +324,7 @@ if __name__ == "__main__":
             optimizer_smpl.step()
             scheduler_smpl.step(smpl_loss)
             in_tensor["smpl_verts"] = smpl_verts * \
-                torch.tensor([1.0, 1.0, -1.0]).to(device)
+                                      torch.tensor([1.0, 1.0, -1.0]).to(device)
 
         # visualize the optimization process
         # 1. SMPL Fitting
@@ -521,7 +524,6 @@ if __name__ == "__main__":
                 # for vis
                 with torch.no_grad():
                     if i % args.vis_freq == 0:
-
                         rotate_recon_lst = dataset.render.get_rgb_image(cam_ids=[0, 1, 2, 3])
 
                         per_loop_lst.extend(
@@ -624,9 +626,9 @@ if __name__ == "__main__":
 
                     file_id = f"{data['name']}_{cloth_type}"
                     with open(
-                        os.path.join(
-                            args.out_dir, cfg.name, "clothes", "info", f"{file_id}_info.pkl"
-                        ), 'wb'
+                            os.path.join(
+                                args.out_dir, cfg.name, "clothes", "info", f"{file_id}_info.pkl"
+                            ), 'wb'
                     ) as fp:
                         pickle.dump(cloth_info, fp)
 
@@ -637,3 +639,8 @@ if __name__ == "__main__":
                     print(
                         f"Unable to extract clothing of type {seg['type']} from image {data['name']}"
                     )
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    main(args)
