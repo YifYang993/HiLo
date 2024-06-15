@@ -34,7 +34,6 @@ class HiloWebApp:
 
     def launch(self):
         self.ui.launch()
-        pass
 
 
 if __name__ == '__main__':
