@@ -70,6 +70,7 @@ class HiLoInfer:
 
         self.args = args
         self.on_infer_status_update = on_infer_status_update
+        self.requires_gif = False
 
     def prepare_dataset(self, imgs: List[np.ndarray]):
 
@@ -83,6 +84,8 @@ class HiLoInfer:
 
     def infer(self, data, dataset):
         # pbar.set_description(f"{data['name']}")
+
+        output_dict = {}
 
         in_tensor = {"smpl_faces": data["smpl_faces"], "image": data["image"]}
 
@@ -149,7 +152,7 @@ class HiLoInfer:
 
         loop_smpl = tqdm(range(self.args.loop_smpl if cfg.net.prior_type != "pifu" else 1))
 
-        per_data_lst = []
+        per_data_lst = []  # PIL.Image
 
         for i in loop_smpl:
 
@@ -282,24 +285,25 @@ class HiLoInfer:
         os.makedirs(os.path.join(self.args.out_dir, cfg.name, "obj"), exist_ok=True)
 
         if cfg.net.prior_type != "pifu":
-
-            per_data_lst[0].save(
-                os.path.join(self.args.out_dir, cfg.name, f"refinement/{data['name']}_smpl.gif"),
-                save_all=True,
-                append_images=per_data_lst[1:],
-                duration=500,
-                loop=0,
-            )
+            if self.requires_gif:
+                per_data_lst[0].save(
+                    os.path.join(self.args.out_dir, cfg.name, f"refinement/{data['name']}_smpl.gif"),
+                    save_all=True,
+                    append_images=per_data_lst[1:],
+                    duration=500,
+                    loop=0,
+                )
 
             if self.args.vis_freq == 1:
                 image2vid(
                     per_data_lst,
                     os.path.join(self.args.out_dir, cfg.name, f"refinement/{data['name']}_smpl.avi"),
                 )
+            smpl_file = os.path.join(self.args.out_dir, cfg.name, f"png/{data['name']}_smpl.png")
+            per_data_lst[-1].save(smpl_file)
 
-            per_data_lst[-1].save(
-                os.path.join(self.args.out_dir, cfg.name, f"png/{data['name']}_smpl.png")
-            )
+            output_dict['smpl'] = per_data_lst[-1].copy()
+            output_dict['smpl_file'] = smpl_file
 
         norm_pred = (
             ((in_tensor["normal_F"][0].permute(1, 2, 0) + 1.0) * 255.0 /
@@ -313,10 +317,11 @@ class HiLoInfer:
             data,
         )
         rgb_norm = blend_rgb_norm(data["ori_image"], norm_orig, mask_orig)
-
-        Image.fromarray(
-            np.concatenate([data["ori_image"].astype(np.uint8), rgb_norm], axis=1)
-        ).save(os.path.join(self.args.out_dir, cfg.name, f"png/{data['name']}_overlap.png"))
+        overlap_filename = os.path.join(self.args.out_dir, cfg.name, f"png/{data['name']}_overlap.png")
+        overlap_img = Image.fromarray(np.concatenate([data["ori_image"].astype(np.uint8), rgb_norm], axis=1))
+        overlap_img.save(overlap_filename)
+        output_dict['overlap'] = overlap_img
+        output_dict['overlap_file'] = overlap_filename
 
         smpl_obj = trimesh.Trimesh(
             in_tensor["smpl_verts"].detach().cpu()[0] * torch.tensor([1.0, -1.0, 1.0]),
@@ -324,7 +329,9 @@ class HiLoInfer:
             process=False,
             maintains_order=True
         )
-        smpl_obj.export(f"{self.args.out_dir}/{cfg.name}/obj/{data['name']}_smpl.obj")
+        smpl_obj_filename = f"{self.args.out_dir}/{cfg.name}/obj/{data['name']}_smpl.obj"
+        smpl_obj.export(smpl_obj_filename)
+        output_dict['smpl_obj_file'] = smpl_obj_filename
 
         smpl_info = {
             'betas': optimed_betas,
@@ -477,13 +484,14 @@ class HiLoInfer:
                         per_data_lst.append(get_optim_grid_image(per_loop_lst, None, type="cloth"))
 
             # gif for optimization
-            per_data_lst[1].save(
-                os.path.join(self.args.out_dir, cfg.name, f"refinement/{data['name']}_cloth.gif"),
-                save_all=True,
-                append_images=per_data_lst[2:],
-                duration=500,
-                loop=0,
-            )
+            if self.requires_gif:
+                per_data_lst[1].save(
+                    os.path.join(self.args.out_dir, cfg.name, f"refinement/{data['name']}_cloth.gif"),
+                    save_all=True,
+                    append_images=per_data_lst[2:],
+                    duration=500,
+                    loop=0,
+                )
 
             if self.args.vis_freq == 1:
                 image2vid(
@@ -504,7 +512,9 @@ class HiLoInfer:
                 device=self.device,
             )
             final.visual.vertex_colors = final_colors
-            final.export(f"{self.args.out_dir}/{cfg.name}/obj/{data['name']}_refine.obj")
+            refine_obj_filename = f"{self.args.out_dir}/{cfg.name}/obj/{data['name']}_refine.obj"
+            final.export(refine_obj_filename)
+            output_dict['refine_obj_file'] = refine_obj_filename
 
         # always export visualized png regardless of the cloth refinment
         per_data_lst[-1].save(os.path.join(self.args.out_dir, cfg.name, f"png/{data['name']}_cloth.png"))
@@ -570,3 +580,5 @@ class HiLoInfer:
                     print(
                         f"Unable to extract clothing of type {seg['type']} from image {data['name']}"
                     )
+
+        return output_dict
