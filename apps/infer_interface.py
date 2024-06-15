@@ -1,6 +1,5 @@
-import warnings
 import logging
-
+import warnings
 from typing import List
 
 warnings.filterwarnings("ignore")
@@ -24,9 +23,7 @@ from apps.ICON import ICON
 
 import os
 from termcolor import colored
-import argparse
 import numpy as np
-from PIL import Image
 import trimesh
 import pickle
 import torch
