@@ -106,13 +106,12 @@ bash command/test_only.sh
 ## Citation
 
 ```bibtex
-@misc{yang2024hilo,
-      title={HiLo: Detailed and Robust 3D Clothed Human Reconstruction with High-and Low-Frequency Information of Parametric Models}, 
-      author={Yifan Yang and Dong Liu and Shuhai Zhang and Zeshuai Deng and Zixiong Huang and Mingkui Tan},
-      year={2024},
-      eprint={2404.04876},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@inproceedings{yang2024hilo,
+  title={HiLo: Detailed and Robust 3D Clothed Human Reconstruction with High-and Low-Frequency Information of Parametric Models},
+  author={Yang, Yifan and Liu, Dong and Zhang, Shuhai and Deng, Zeshuai and Huang, Zixiong and Tan, Mingkui},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={10671--10681},
+  year={2024}
 }
 ```
 
